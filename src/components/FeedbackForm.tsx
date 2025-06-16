@@ -6,7 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
-import { MessageSquare, Star } from 'lucide-react';
+import { Calculator, Star } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
 const FeedbackForm = () => {
@@ -25,8 +25,8 @@ const FeedbackForm = () => {
     
     if (!formData.message.trim()) {
       toast({
-        title: "Message Required",
-        description: "Please provide your feedback message.",
+        title: "Feedback Required",
+        description: "Please share your thoughts about the carbon calculation.",
         variant: "destructive",
       });
       return;
@@ -37,11 +37,11 @@ const FeedbackForm = () => {
     // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 1000));
     
-    console.log('Feedback submitted:', formData);
+    console.log('Carbon calculation feedback submitted:', formData);
     
     toast({
-      title: "Feedback Submitted!",
-      description: "Thank you for your feedback. We appreciate your input!",
+      title: "Thank You!",
+      description: "Your feedback helps us improve our carbon footprint calculations.",
     });
     
     // Reset form
@@ -64,8 +64,8 @@ const FeedbackForm = () => {
     <Card className="animate-fade-in">
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
-          <MessageSquare className="w-5 h-5 text-eco-600" />
-          Share Your Feedback
+          <Calculator className="w-5 h-5 text-eco-600" />
+          Feedback on Carbon Calculation
         </CardTitle>
       </CardHeader>
       <CardContent>
@@ -96,7 +96,7 @@ const FeedbackForm = () => {
           </div>
 
           <div>
-            <Label>Rate Your Experience</Label>
+            <Label>How accurate do you think this calculation is?</Label>
             <div className="flex gap-1 mt-2">
               {[1, 2, 3, 4, 5].map((star) => (
                 <button
@@ -118,29 +118,30 @@ const FeedbackForm = () => {
           </div>
 
           <div>
-            <Label htmlFor="category">Category</Label>
+            <Label htmlFor="category">What aspect would you like to comment on?</Label>
             <Select value={formData.category} onValueChange={(value) => setFormData(prev => ({ ...prev, category: value }))}>
               <SelectTrigger className="mt-1">
-                <SelectValue placeholder="Select feedback category" />
+                <SelectValue placeholder="Select an aspect" />
               </SelectTrigger>
               <SelectContent>
+                <SelectItem value="accuracy">Calculation Accuracy</SelectItem>
+                <SelectItem value="missing-factors">Missing Factors</SelectItem>
+                <SelectItem value="methodology">Calculation Method</SelectItem>
+                <SelectItem value="recommendations">Recommendations Quality</SelectItem>
+                <SelectItem value="data-inputs">Data Input Options</SelectItem>
+                <SelectItem value="results-display">Results Presentation</SelectItem>
                 <SelectItem value="general">General Feedback</SelectItem>
-                <SelectItem value="bug">Bug Report</SelectItem>
-                <SelectItem value="feature">Feature Request</SelectItem>
-                <SelectItem value="ui">User Interface</SelectItem>
-                <SelectItem value="calculation">Calculation Accuracy</SelectItem>
-                <SelectItem value="other">Other</SelectItem>
               </SelectContent>
             </Select>
           </div>
 
           <div>
-            <Label htmlFor="message">Your Feedback *</Label>
+            <Label htmlFor="message">Your Feedback on Carbon Calculation *</Label>
             <Textarea
               id="message"
               value={formData.message}
               onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
-              placeholder="Please share your thoughts, suggestions, or report any issues..."
+              placeholder="Share your thoughts on the calculation accuracy, missing factors, or suggestions for improvement..."
               className="mt-1 min-h-[100px]"
               required
             />
@@ -151,7 +152,7 @@ const FeedbackForm = () => {
             disabled={isSubmitting}
             className="w-full bg-eco-600 hover:bg-eco-700"
           >
-            {isSubmitting ? 'Submitting...' : 'Submit Feedback'}
+            {isSubmitting ? 'Submitting...' : 'Submit Calculation Feedback'}
           </Button>
         </form>
       </CardContent>
