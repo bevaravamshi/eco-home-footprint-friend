@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -9,6 +8,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Progress } from '@/components/ui/progress';
 import { PieChart, Pie, Cell, ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
 import { Leaf, Car, Home, Utensils, Trash2, Lightbulb } from 'lucide-react';
+import FeedbackForm from './FeedbackForm';
 
 interface CarbonData {
   energy: {
@@ -395,7 +395,7 @@ const CarbonCalculator = () => {
             </CardContent>
           </Card>
 
-          <Card className="animate-fade-in">
+          <Card className="animate-fade-in mb-8">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Lightbulb className="w-5 h-5 text-yellow-500" />
@@ -418,6 +418,10 @@ const CarbonCalculator = () => {
               </div>
             </CardContent>
           </Card>
+
+          <div className="mb-8">
+            <FeedbackForm />
+          </div>
 
           <div className="text-center mt-8">
             <Button onClick={() => { setResults(null); setCurrentStep(0); }} className="bg-eco-600 hover:bg-eco-700">
